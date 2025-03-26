@@ -8,6 +8,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public DbHelper(Context context) {
         super(context, "LapMarket", null, 44);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String account = "CREATE TABLE ACCOUNT(id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -27,11 +28,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       if (oldVersion != newVersion){
-           db.execSQL("drop table if exists ACCOUNT");
-           onCreate(db);
-       }
+        if (oldVersion != newVersion){
+            db.execSQL("DROP TABLE IF EXISTS ACCOUNT");
+            onCreate(db);
+        }
     }
+
     public void resetLocalData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("HOADON", null, null);
